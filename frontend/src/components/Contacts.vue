@@ -1,13 +1,13 @@
 <template>
-    <div class="products">
+    <div class="contacts">
         <navbar/>
         <div class="container">
             <b-alert :show="loading" variant="info">Loading...</b-alert>
             <div class="card">
                 <div class="card-header">
-                    Products
+                    Contacts
                     <a href="#" class="icon">
-                        <i v-on:click="editItem(product)">
+                        <i v-on:click="editItem(contact)">
                             <font-awesome-icon icon="plus-circle"/>
                         </i>
                     </a>
@@ -17,23 +17,21 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                                <th>Code</th>
                                 <th>Name</th>
-                                <th>Price</th>
+                                <th>Phone number</th>
+                                <th>Email</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="product in products" v-bind:key="product.id">
-                                <template v-if="editId == product.id">
-                                    <td><input v-model="product.id" type="text"></td>
-                                    <td><input v-model="product.code" type="text"></td>
-                                    <td><input v-model="product.name" type="text"></td>
-                                    <td><input v-model="product.price" type="text"></td>
+                            <tr v-for="contact in contacts" v-bind:key="contact.id">
+                                <template v-if="editId == contact.id">
+                                    <td><input v-model="contact.name" type="text"></td>
+                                    <td><input v-model="contact.phoneNumber" type="text"></td>
+                                    <td><input v-model="contact.notification" type="text"></td>
                                     <td>
                                         <span class="icon">
-                                            <i @click="editItem(product)" class="fa fa-check"></i>
+                                            <i @click="editItem(contact)" class="fa fa-check"></i>
                                         </span>
                                         <span class="icon">
                                             <font-awesome-icon @click="onCancel" icon="add"/>
@@ -41,20 +39,19 @@
                                     </td>
                                 </template>
                                 <template v-else>
-                                    <td>{{product.id}}</td>
-                                    <td>{{product.code}}</td>
-                                    <td>{{product.name}}</td>
-                                    <td>{{product.price}}</td>
+                                    <td>{{contact.name}}</td>
+                                    <td>{{contact.phoneNumber}}</td>
+                                    <td>{{contact.notification}}</td>
                                     <td>
                                         <a href="#" class="icon">
-                                            <font-awesome-icon v-on:click="deleteItem(product)" icon="trash"/>
+                                            <font-awesome-icon v-on:click="deleteItem(contact)" icon="trash"/>
                                         </a>
                                         <a href="#" class="icon">
-                                            <i v-on:click="editItem(product)">
+                                            <i v-on:click="editItem(contact)">
                                                 <font-awesome-icon icon="pencil-alt"/>
                                             </i>
                                         </a>
-                                        <router-link :to="{name:'ProductPage', params:{id: product.id}}" class="icon">
+                                        <router-link :to="{name:'ContactPage', params:{id: contact.id}}" class="icon">
                                             <i>
                                                 <font-awesome-icon icon="eye"/>
                                             </i>
@@ -81,13 +78,10 @@
                                 <v-text-field v-model="editedItem.name" label="Product name"></v-text-field>
                             </v-flex>
                             <v-flex xs12 sm6 md4>
-                                <v-text-field v-model="editedItem.price" label="Price"></v-text-field>
+                                <v-text-field v-model="editedItem.phoneNumber" label="Price"></v-text-field>
                             </v-flex>
                             <v-flex xs12 sm6 md4>
-                                <v-text-field v-model="editedItem.code" label="Code"></v-text-field>
-                            </v-flex>
-                            <v-flex xs12 sm6 md4>
-                                <v-text-field v-model="editedItem.id" label="Id"></v-text-field>
+                                <v-text-field v-model="editedItem.notification" label="Code"></v-text-field>
                             </v-flex>
                         </v-layout>
                     </v-container>
@@ -105,14 +99,14 @@
 <script>
     // import api from '@/api'
     import navbar from './NavOrganization'
-    import {AXIOS} from "../components/http-common";
+    import {AXIOS} from "./backend-api";
 
     export default {
         data() {
             return {
                 loading: false,
                 dialog: false,
-                products: [],
+                contacts: [],
                 model: {},
                 editedIndex: -1,
                 editedItem: {
@@ -138,9 +132,9 @@
             console.log('created function')
             const organizationId = localStorage.getItem('organizationId')
 
-            AXIOS.get('/products/' + organizationId)
+            AXIOS.get('/contacts/' + organizationId)
                 .then(response => {
-                    this.products = response.data
+                    this.contacts = response.data
                 })
                 .catch(err => {
 
@@ -148,12 +142,12 @@
         },
         methods: {
             editItem(item) {
-                this.editedIndex = this.products.indexOf(item)
+                this.editedIndex = this.contacts.indexOf(item)
                 this.editedItem = Object.assign({}, item)
                 this.dialog = true
             },
             deleteItem(item) {
-                const index = this.products.indexOf(item)
+                const index = this.contacts.indexOf(item)
                 confirm('Are you sure you want to delete this item?') && this.listPrimitive.delete(index)
             },
             close() {
@@ -204,7 +198,7 @@
         },
         computed: {
             formTitle() {
-                return this.editedIndex === -1 ? 'New product' : 'Edit product'
+                return this.editedIndex === -1 ? 'New contact' : 'Edit contact'
             }
         },
         watch: {

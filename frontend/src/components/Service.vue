@@ -12,7 +12,7 @@
 
 <script>
   // import axios from 'axios'
-  import {AXIOS} from './http-common'
+  import {AXIOS} from './backend-api'
 
   export default {
     name: 'service',
@@ -25,18 +25,7 @@
       }
     },
     methods: {
-      // Fetches posts when the component is created.
-      callRestService () {
-        AXIOS.get(`/hello`)
-          .then(response => {
-            // JSON responses are automatically parsed.
-            this.response = response.data
-            console.log(response.data)
-          })
-          .catch(e => {
-            this.errors.push(e)
-          })
-      }
+
     }
   }
 

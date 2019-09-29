@@ -18,13 +18,17 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public void notify(String to, String subject, String text) {
-        for (Messenger messenger : messengers) {
-            messenger.notify(to, subject, text);
-        }
+        messengers.stream()
+                .forEach(messenger -> messenger.notify(to, subject, text));
     }
 
     @Override
     public void setMessenger(Messenger messenger) {
         messengers.add(messenger);
+    }
+
+    @Override
+    public void setMessengers(List<Messenger> messengers) {
+        this.messengers = messengers;
     }
 }

@@ -1,13 +1,13 @@
 <template>
-    <div class="products">
+    <div class="accounts">
         <navbar/>
         <div class="container">
             <b-alert :show="loading" variant="info">Loading...</b-alert>
             <div class="card">
                 <div class="card-header">
-                    Products
+                    Accounts
                     <a href="#" class="icon">
-                        <i v-on:click="editItem(product)">
+                        <i v-on:click="editItem(account)">
                             <font-awesome-icon icon="plus-circle"/>
                         </i>
                     </a>
@@ -17,23 +17,17 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                                <th>Code</th>
                                 <th>Name</th>
-                                <th>Price</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="product in products" v-bind:key="product.id">
-                                <template v-if="editId == product.id">
-                                    <td><input v-model="product.id" type="text"></td>
-                                    <td><input v-model="product.code" type="text"></td>
-                                    <td><input v-model="product.name" type="text"></td>
-                                    <td><input v-model="product.price" type="text"></td>
+                            <tr v-for="account in accounts" v-bind:key="account.id">
+                                <template v-if="editId == account.id">
+                                    <td><input v-model="account.name" type="text"></td>
                                     <td>
                                         <span class="icon">
-                                            <i @click="editItem(product)" class="fa fa-check"></i>
+                                            <i @click="editItem(account)" class="fa fa-check"></i>
                                         </span>
                                         <span class="icon">
                                             <font-awesome-icon @click="onCancel" icon="add"/>
@@ -41,20 +35,17 @@
                                     </td>
                                 </template>
                                 <template v-else>
-                                    <td>{{product.id}}</td>
-                                    <td>{{product.code}}</td>
-                                    <td>{{product.name}}</td>
-                                    <td>{{product.price}}</td>
+                                    <td>{{account.name}}</td>
                                     <td>
                                         <a href="#" class="icon">
-                                            <font-awesome-icon v-on:click="deleteItem(product)" icon="trash"/>
+                                            <font-awesome-icon v-on:click="deleteItem(account)" icon="trash"/>
                                         </a>
                                         <a href="#" class="icon">
-                                            <i v-on:click="editItem(product)">
+                                            <i v-on:click="editItem(account)">
                                                 <font-awesome-icon icon="pencil-alt"/>
                                             </i>
                                         </a>
-                                        <router-link :to="{name:'ProductPage', params:{id: product.id}}" class="icon">
+                                        <router-link :to="{name:'AccountPage', params:{id: account.id}}" class="icon">
                                             <i>
                                                 <font-awesome-icon icon="eye"/>
                                             </i>
@@ -78,13 +69,7 @@
                     <v-container grid-list-md>
                         <v-layout wrap>
                             <v-flex xs12 sm6 md4>
-                                <v-text-field v-model="editedItem.name" label="Product name"></v-text-field>
-                            </v-flex>
-                            <v-flex xs12 sm6 md4>
-                                <v-text-field v-model="editedItem.price" label="Price"></v-text-field>
-                            </v-flex>
-                            <v-flex xs12 sm6 md4>
-                                <v-text-field v-model="editedItem.code" label="Code"></v-text-field>
+                                <v-text-field v-model="editedItem.name" label="Account name"></v-text-field>
                             </v-flex>
                             <v-flex xs12 sm6 md4>
                                 <v-text-field v-model="editedItem.id" label="Id"></v-text-field>
@@ -105,21 +90,20 @@
 <script>
     // import api from '@/api'
     import navbar from './NavOrganization'
-    import {AXIOS} from "../components/http-common";
+    import {AXIOS} from "./backend-api";
 
     export default {
         data() {
             return {
                 loading: false,
                 dialog: false,
-                products: [],
+                accounts: [],
                 model: {},
                 editedIndex: -1,
                 editedItem: {
-                    name: '',
-                    price: 0.00,
-                    code: 0,
                     id: 0,
+                    name: '',
+                    organizationId: ''
                 },
                 defaultItem: {
                     name: '',
@@ -135,25 +119,30 @@
             this.refreshPosts()
         },
         created: function () {
-            console.log('created function')
-            const organizationId = localStorage.getItem('organizationId')
-
-            AXIOS.get('/products/' + organizationId)
-                .then(response => {
-                    this.products = response.data
-                })
-                .catch(err => {
-
-                })
+            this.getAllAccounts();
         },
         methods: {
+            getAllAccounts() {
+                console.log('created function')
+                const organizationId = localStorage.getItem('organizationId')
+
+                AXIOS.get('/accounts/' + organizationId)
+                    .then(response => {
+                        this.accounts = response.data
+                    })
+                    .catch(err => {
+
+                    })
+            },
             editItem(item) {
-                this.editedIndex = this.products.indexOf(item)
-                this.editedItem = Object.assign({}, item)
+                if (item != null) {
+                    this.editedIndex = this.accounts.indexOf(item)
+                    this.editedItem = Object.assign({}, item)
+                }
                 this.dialog = true
             },
             deleteItem(item) {
-                const index = this.products.indexOf(item)
+                const index = this.accounts.indexOf(item)
                 confirm('Are you sure you want to delete this item?') && this.listPrimitive.delete(index)
             },
             close() {
@@ -164,12 +153,16 @@
                 }, 300)
             },
             save() {
+                const url = `/accounts/`;
+                console.log(this.editedItem);
+                this.editedItem.organizationId = localStorage.getItem('organizationId');
                 if (this.editedIndex > -1) {
-                    this.listPrimitive.update(this.editedIndex, this.editedItem)
+                    return AXIOS.put(url, this.editedItem);
                 } else {
-                    this.listPrimitive.push(this.editedItem)
+                    return AXIOS.post(url, this.editedItem);
                 }
-                this.close()
+                this.getAllAccounts();
+                this.close();
             },
             async refreshPosts() {
                 this.loading = true
@@ -198,15 +191,18 @@
                     await this.refreshPosts()
                 }
             }
-        },
+        }
+        ,
         components: {
             navbar
-        },
+        }
+        ,
         computed: {
             formTitle() {
-                return this.editedIndex === -1 ? 'New product' : 'Edit product'
+                return this.editedIndex === -1 ? 'New account' : 'Edit account'
             }
-        },
+        }
+        ,
         watch: {
             dialog(val) {
                 val || this.close()

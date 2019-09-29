@@ -4,7 +4,7 @@
 	<artifactId>frontend</artifactId>
 
 	<parent>
-		<groupId>de.jonashackt</groupId>
+		<groupId>com.dyvak</groupId>
 		<artifactId>spring-boot-vuejs</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
@@ -30,7 +30,7 @@
 							<goal>install-node-and-npm</goal>
 						</goals>
 						<configuration>
-							<nodeVersion>v11.14.0</nodeVersion>
+							<nodeVersion>v12.9.0</nodeVersion>
 						</configuration>
 					</execution>
 					<!-- Install all project dependencies -->
@@ -68,8 +68,8 @@
 					</configuration>
 					</execution>
 					<!-- Run End2End tests with Nightwatch -->
-					<!--
-					<execution>
+
+					<!--<execution>
 					<id>npm run test:e2e</id>
 					<goals>
 						<goal>npm</goal>
@@ -78,8 +78,8 @@
 					<configuration>
 					  	<arguments>run test:e2e</arguments>
 					</configuration>
-					</execution>
-					-->
+					</execution>-->
+
 				</executions>
 			</plugin>
 		</plugins>

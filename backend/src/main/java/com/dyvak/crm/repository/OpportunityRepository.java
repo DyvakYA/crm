@@ -1,8 +1,7 @@
-package com.dyvak.springbootvuejs.repository;
+package com.dyvak.crm.repository;
 
 
-import com.dyvak.springbootvuejs.domain.Lead;
-import com.dyvak.springbootvuejs.domain.Opportunity;
+import com.dyvak.crm.domain.Opportunity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: free-crm
+  profiles:
+    active: @spring.profiles.active@
+  main:
+    banner-mode: "console"
+
+server:
+  port: 8088
+  app:
+    email: dyvakyurii@gmail.com
+    threadCount: 10
+
+#  servlet:
+#    context-path: /api
+
+
+free-crm:
+  activate: true
+
+notification:
+  email: dyvakyurii@gmail.com
+  activate: true

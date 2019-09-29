@@ -1,5 +1,6 @@
 <template>
   <div class="user">
+    <navbar/>
     <h1>Create User</h1>
 
     <h3>Just some database interaction...</h3>
@@ -20,7 +21,8 @@
 
 <script>
   // import axios from 'axios'
-  import {AXIOS} from './http-common'
+  import {AXIOS} from './backend-api'
+  import navbar from './NavAccount'
 
   export default {
     name: 'user',
@@ -70,7 +72,10 @@
             this.errors.push(e)
           })
       }
-    }
+    },
+    components: {
+      navbar
+    },
   }
 
 </script>

@@ -1,7 +1,6 @@
-package com.dyvak.springbootvuejs.domain;
+package com.dyvak.crm.domain;
 
 import lombok.Data;
-import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
@@ -15,4 +14,6 @@ public class Account {
     private long id;
 
     private String name;
+
+    private Integer organizationId;
 }

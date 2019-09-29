@@ -1,29 +1,4 @@
 spring:
-  application:
-    name: free-crm
-  profiles:
-     active: @spring.profiles.active@
-  main:
-    banner-mode: "off"
-
-server:
-  port: 8088
-  app:
-    email: dyvakyurii@gmail.com
-    threadCount: 10
-
-free-crm:
-  activate: true
-
-notification:
-  email:
-    - dyvakyurii@gmail.com
-  activate: true
-
-
----
-
-spring:
   profiles: production
 
   jpa:
@@ -31,11 +6,6 @@ spring:
     database: mysql
     properties:
       hibernate.format_sql: true
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: update
-
-
-
-
-

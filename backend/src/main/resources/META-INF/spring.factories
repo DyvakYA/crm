@@ -1,0 +1,7 @@
+org.springframework.boot.env.EnvironmentPostProcessor = com.dyvak.crm.configuration.ResolveProfileEnvironmentPostProcessor
+
+org.springframework.boot.diagnostics.FailureAnalyzer = com.dyvak.crm.configuration.ProfileNeededFailureAnalyzer
+
+org.springframework.context.ApplicationContextInitializer = com.dyvak.crm.configuration.BadProfileInitializer
+
+org.springframework.boot.context.properties.EnableConfigurationProperties = com.dyvak.crm.configuration.CrmConfiguration

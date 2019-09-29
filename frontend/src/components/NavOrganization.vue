@@ -1,9 +1,11 @@
 <template>
     <div id="nav">
-        <router-link to="/products">Products</router-link> |
+        <router-link to="/leads">Leads</router-link> |
+        <router-link to="/accounts">Accounts</router-link> |
+        <router-link to="/contacts">Contacts</router-link> |
         <router-link to="/orders">Orders</router-link> |
-        <router-link to="/orders">Bills</router-link> |
-        <router-link to="/orders">Garanty</router-link> |
+        <router-link to="/products">Products</router-link> |
+        <router-link to="/opportunities">Opportunities</router-link> |
         <router-link to="/logout">Logout</router-link>
     </div>
 </template>

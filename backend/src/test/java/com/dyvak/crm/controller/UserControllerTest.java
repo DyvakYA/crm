@@ -1,8 +1,8 @@
-package com.dyvak.springbootvuejs.controller;
+package com.dyvak.crm.controller;
 
-import com.dyvak.springbootvuejs.Application;
-import com.dyvak.springbootvuejs.domain.User;
-import com.dyvak.springbootvuejs.security.UserRole;
+import com.dyvak.crm.Application;
+import com.dyvak.crm.domain.User;
+import com.dyvak.crm.security.UserRole;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.junit.Before;
@@ -43,7 +43,7 @@ public class UserControllerTest {
 
         Long userId =
                 given()
-                        .queryParam("email", "dyvakyurii@gmail.com")
+                        .queryParam("notification", "dyvakyurii@gmail.com")
                         .queryParam("password", "12345")
                         .when()
                         .post("/api/user")

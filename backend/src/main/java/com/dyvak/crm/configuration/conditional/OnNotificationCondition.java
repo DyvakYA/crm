@@ -1,4 +1,4 @@
-package com.dyvak.springbootvuejs.configuration.conditional;
+package com.dyvak.crm.configuration.conditional;
 
 import org.springframework.boot.autoconfigure.condition.AllNestedConditions;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -11,7 +11,7 @@ public class OnNotificationCondition extends AllNestedConditions {
         super(REGISTER_BEAN);
     }
 
-    @ConditionalOnProperty("notification.email")
+    @ConditionalOnProperty("notification.notification")
     public static class OnDistinationCondition {
 
     }

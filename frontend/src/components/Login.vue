@@ -1,98 +1,141 @@
 <template>
-  <div class="user">
-    <h1>Create User</h1>
+    <div class="login">
+        <navbarmain/>
+        <b-container>
+            <b-row>
+                <b-col cols="12" sm="6" md="4" offset-sm="3" offset-md="4">
+                    <div class="auth-form px-3">
+                        <div class="auth-form-header">
 
-    <h3>Just some database interaction...</h3>
 
-    <input type="text" v-model="user.firstName" placeholder="first name">
-    <input type="text" v-model="user.lastName" placeholder="last name">
-
-    <button @click="createUser()">Create User</button>
-
-    <div v-if="showResponse"><h6>User created with Id: {{ response }}</h6></div>
-
-    <button v-if="showResponse" @click="retrieveUser()">Retrieve user {{user.id}} data from database</button>
-
-    <h4 v-if="showRetrievedUser">Retrieved User {{retrievedUser.firstName}} {{retrievedUser.lastName}}</h4>
-
-  </div>
+                        </div>
+                        <div class="auth-form-body">
+                            <div class="alert alert-danger" v-if="error">
+                                <p>Bad login information</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="email_field">Email address</label>
+                                <input
+                                        id="email_field"
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Enter your email"
+                                        v-model="user.email"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password<a class="label-link" href="/password/reset">Forgot
+                                    password?</a></label>
+                                <input
+                                        id="password"
+                                        type="password"
+                                        class="form-control"
+                                        placeholder="Enter your password"
+                                        v-model="user.password"
+                                >
+                            </div>
+                            <button class="btn btn-primary btn-block" @click="submit()">Access</button>
+                        </div>
+                        <div class="create-account-callout mt-3">
+                            <a href="/account/create">Create an account</a>
+                        </div>
+                    </div>
+                </b-col>
+            </b-row>
+        </b-container>
+    </div>
 </template>
 
 <script>
-  // import axios from 'axios'
-  import {AXIOS} from './http-common'
+    import navbarmain from './NavMain'
 
-  export default {
-    name: 'user',
-
-    data () {
-      return {
-        response: [],
-        errors: [],
-        user: {
-          lastName: '',
-          firstName: '',
-          id: 0
+    export default {
+        name: 'login',
+        data() {
+            return {
+                loginError: false,
+                user: {
+                    email: '',
+                    password: ''
+                },
+                error: false,
+                errors: []
+            }
         },
-        showResponse: false,
-        retrievedUser: {},
-        showRetrievedUser: false
-      }
-    },
-    methods: {
-      // Fetches posts when the component is created.
-      createUser () {
-        var params = new URLSearchParams()
-        params.append('firstName', this.user.firstName)
-        params.append('lastName', this.user.lastName)
+        methods: {
+            submit() {
 
-        AXIOS.post(`/user`, params)
-          .then(response => {
-            // JSON responses are automatically parsed.
-            this.response = response.data
-            this.user.id = response.data
-            console.log(response.data)
-            this.showResponse = true
-          })
-          .catch(e => {
-            this.errors.push(e)
-          })
-      },
-      retrieveUser () {
-        AXIOS.get(`/user/` + this.user.id)
-          .then(response => {
-            // JSON responses are automatically parsed.
-            this.retrievedUser = response.data
-            console.log(response.data)
-            this.showRetrievedUser = true
-          })
-          .catch(e => {
-            this.errors.push(e)
-          })
-      }
+                const user = {
+                    email: this.user.email,
+                    password: this.user.password
+                }
+
+                this.errors = [];
+                console.log(JSON.stringify(user))
+                this.$store.dispatch("login", {email: user.email, password: user.password})
+                    .then(() =>{
+                        this.$store.dispatch("token");
+                    })
+                    .then(() => {
+                        this.$router.push('/organization')
+                    })
+                    .catch(error => {
+                        this.loginError = true;
+                        this.errors.push(error);
+                        this.error = true;
+                    })
+            }
+        },
+        components: {
+            navbarmain
+        }
+
     }
-  }
-
 </script>
 
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  h1, h2 {
-    font-weight: normal;
-  }
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
+    .auth-form-header {
+        background-color: transparent;
+        border: 0;
+        color: #333;
+        margin-bottom: 15px;
+        text-align: center;
+        text-shadow: none;
+    }
 
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
+    .auth-form-body {
+        background-color: #ffff;
+        border: 1px solid #d8dee2;
+        border-radius: 0 0 3px 3px;
+        font-size: 14px;
+        padding: 20px;
+    }
 
-  a {
-    color: #42b983;
-  }
+    .create-account-callout {
+        border: 1px solid #d8dee2;
+        border-radius: 5px;
+        padding: 15px 20px;
+        text-align: center;
+    }
+
+    .auth-form label {
+        display: block;
+        margin-bottom: 7px;
+        text-align: left;
+    }
+
+    .btn-block {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .label-link {
+        float: right;
+    }
+
+    label {
+        font-weight: 600;
+    }
 </style>

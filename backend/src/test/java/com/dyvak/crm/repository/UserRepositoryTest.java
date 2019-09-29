@@ -1,7 +1,7 @@
-package com.dyvak.springbootvuejs.repository;
+package com.dyvak.crm.repository;
 
-import com.dyvak.springbootvuejs.domain.User;
-import com.dyvak.springbootvuejs.security.UserRole;
+import com.dyvak.crm.domain.User;
+import com.dyvak.crm.security.UserRole;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,7 +43,7 @@ public class UserRepositoryTest {
 
     @Test
     public void testFindByEmail() {
-        // Search for specific User in Database according to email
+        // Search for specific User in Database according to notification
         Optional<User> usersEmailDyvakYurii = users.findByEmail("dyvakyurii@gmail.com");
         assertTrue(usersEmailDyvakYurii.isPresent());
     }

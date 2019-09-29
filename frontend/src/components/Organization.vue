@@ -3,11 +3,12 @@
         <navbar/>
         <b-container>
             <b-row>
-                <b-col v-on:click="getOrganization(organization.id)" v-for="organization in organizations" cols="12" sm="6" md="4">
-                    <div id="org-form"  class="organization px-3">
-                        <div class="organization-header">City : {{ organization.city}}</div>
+                <b-col v-on:click="getOrganization(organization.id)" v-for="organization in organizations" cols="12"
+                       sm="6" md="4">
+                    <div id="org-form" class="organization px-3">
+                        <div class="organization-header">{{ organization.name}}</div>
                         <div>Address : {{ organization.address}}</div>
-                        <p>{{ organization.name}}</p>
+                        <p>{{ organization.city}}</p>
                         <p>{{ organization.code}}</p>
                         <p>{{ organization.userId}}</p>
                     </div>
@@ -20,7 +21,7 @@
 
 <script>
     import navbar from './NavAccount'
-    import {AXIOS} from "../components/http-common";
+    import {AXIOS} from "./backend-api";
 
     export default {
         name: 'account',
@@ -31,8 +32,9 @@
             }
         },
         created: function () {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-            this.userId = currentUser.userInfo.userId
+            const currentUser = this.$store.state.user
+            console.log(JSON.stringify(currentUser))
+            this.userId = currentUser.userId;
 
             AXIOS.get('/organizations/' + this.userId)
                 .then(response => {

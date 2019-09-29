@@ -1,4 +1,4 @@
-package com.dyvak.springbootvuejs.security;
+package com.dyvak.crm.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

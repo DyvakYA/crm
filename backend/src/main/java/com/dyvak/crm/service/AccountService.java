@@ -1,26 +1,12 @@
-package com.dyvak.crm.service.impl;
+package com.dyvak.crm.service;
 
 import com.dyvak.crm.domain.Account;
-import com.dyvak.crm.repository.AccountRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
-@AllArgsConstructor
-public class AccountServiceImpl {
+public interface AccountService {
 
-    private AccountRepository accountRepository;
+    List<Account> findAllAccountsByOrganizationId(Integer orgId);
 
-    @Transactional(readOnly = true)
-    public List<Account> findAllAccountsByOrganizationId(Integer orgId) {
-        return accountRepository.findAllByOrganizationId(orgId);
-    }
-
-    @Transactional
-    public void create(Account account) {
-        accountRepository.save(account);
-    }
+    void create(Account account);
 }

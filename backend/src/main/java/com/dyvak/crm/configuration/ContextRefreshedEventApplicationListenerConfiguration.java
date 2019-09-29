@@ -7,9 +7,9 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
 @RequiredArgsConstructor
-public class ContextRefreshedEventContextListenerConfiguration implements ApplicationListener<ContextRefreshedEvent> {
+public class ContextRefreshedEventApplicationListenerConfiguration implements ApplicationListener<ContextRefreshedEvent> {
 
-    private static final Logger log = LoggerFactory.getLogger(ContextRefreshedEventContextListenerConfiguration.class);
+    private static final Logger log = LoggerFactory.getLogger(ContextRefreshedEventApplicationListenerConfiguration.class);
 
     private final NotificationProperties notificationProperties;
 

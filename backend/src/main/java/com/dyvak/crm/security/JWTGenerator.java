@@ -1,4 +1,4 @@
-package com.dyvak.springbootvuejs.security;
+package com.dyvak.crm.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

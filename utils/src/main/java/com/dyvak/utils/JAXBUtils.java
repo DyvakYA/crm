@@ -15,39 +15,14 @@ public class JAXBUtils {
     private static Set<Class> cl = new HashSet(30);
 
     static {
-        try {
-            cl.add(Vehicles.class);
-            cl.add(Vehicle.class);
-            cl.add(Client.class);
-            cl.add(Participants.class);
-            cl.add(Participant.class);
-            cl.add(Policy.class);
-            cl.add(Object.class);
-
-            cl.add(Nomenclatures.class);
-            cl.add(InsrObjectsContainer.class);
-            cl.add(PoliciesContainer.class);
-            cl.add(ErrorContainer.class);
-
-            cl.add(Contacts.class);
-            cl.add(Documents.class);
-            cl.add(Addresses.class);
-            cl.add(ContextParametersList.class);
-
-            cl.add(PaginatedPolicies.class);
-            cl.add(SalesChannels.class);
-
-            cl.add(PoliciesContainer.class);
-
-            cl.add(CustomerClaims.class);
-            cl.add(ClaimDocuments.class);
-            cl.add(ClaimPayments.class);
-            cl.add(PolicyPayment.class);
-
-            jc = JAXBContext.newInstance(new Class[]{Vehicles.class, Vehicle.class, Client.class, Participant.class, Participants.class, Policy.class, Object.class, Nomenclatures.class, InsrObjectsContainer.class, PoliciesContainer.class, ErrorContainer.class, Contacts.class, Documents.class, Addresses.class, ContextParametersList.class, PaginatedPolicies.class, SalesChannels.class, CustomerClaims.class, ClaimDocuments.class, ClaimPayments.class, PolicyPayment.class});
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
+//        try {
+//
+//
+//
+//            //jc = JAXBContext.newInstance(new Class[]{Vehicles.class, Vehicle.class, Client.class, Participant.class, Participants.class, Policy.class, Object.class, Nomenclatures.class, InsrObjectsContainer.class, PoliciesContainer.class, ErrorContainer.class, Contacts.class, Documents.class, Addresses.class, ContextParametersList.class, PaginatedPolicies.class, SalesChannels.class, CustomerClaims.class, ClaimDocuments.class, ClaimPayments.class, PolicyPayment.class});
+//        } catch (JAXBException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public static String marshalObject(Object obj)
@@ -85,10 +60,10 @@ public class JAXBUtils {
         if (type.equals(obj.getClass())) {
             return (T) obj;
         }
-        if ((obj instanceof ErrorContainer)) {
-            ErrorContainer error = (ErrorContainer) obj;
-            throw new JAXBException(error.getErrorMessage());
-        }
+//        if ((obj instanceof ErrorContainer)) {
+//            ErrorContainer error = (ErrorContainer) obj;
+//            throw new JAXBException(error.getErrorMessage());
+//        }
         throw new JAXBException("Unknown object type");
     }
 

@@ -1,4 +1,4 @@
-package com.dyvak.springbootvuejs.security;
+package com.dyvak.crm.security;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 

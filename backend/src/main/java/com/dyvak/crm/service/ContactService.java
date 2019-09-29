@@ -1,9 +1,4 @@
-package com.dyvak.crm.service.impl;
+package com.dyvak.crm.service;
 
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
-
-@Service
-@AllArgsConstructor
-public class ContactServiceImpl {
+public interface ContactService {
 }

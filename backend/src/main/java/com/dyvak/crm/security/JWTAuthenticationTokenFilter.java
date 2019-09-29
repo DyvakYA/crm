@@ -1,6 +1,6 @@
-package com.dyvak.springbootvuejs.security;
+package com.dyvak.crm.security;
 
-import com.dyvak.springbootvuejs.exception.TokenIsMissingException;
+import com.dyvak.crm.exception.TokenIsMissingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;

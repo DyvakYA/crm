@@ -1,6 +1,5 @@
-package com.dyvak.crm.configuration.conditional;
+package com.dyvak.crm.configuration;
 
-import com.dyvak.crm.configuration.NotificationProperties;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +9,7 @@ import org.springframework.context.event.ContextClosedEvent;
 @RequiredArgsConstructor
 public class ContextClosedEventApplicationListenerConfiguration implements ApplicationListener<ContextClosedEvent> {
 
-    private static final Logger log = LoggerFactory.getLogger(com.dyvak.crm.configuration.ContextRefreshedEventContextListenerConfiguration.class);
+    private static final Logger log = LoggerFactory.getLogger(ContextClosedEventApplicationListenerConfiguration.class);
 
     private final NotificationProperties notificationProperties;
 

@@ -1,11 +1,14 @@
-package com.dyvak.springbootvuejs.controller;
+package com.dyvak.crm.controller;
 
-import com.dyvak.springbootvuejs.domain.Order;
-import com.dyvak.springbootvuejs.service.OrderService;
+import com.dyvak.crm.aspects.Benchmark;
+import com.dyvak.crm.aspects.LoggedArgs;
+import com.dyvak.crm.aspects.LoggedReturn;
+import com.dyvak.crm.domain.Order;
+import com.dyvak.crm.service.OrderService;
+import com.dyvak.crm.service.impl.OrderServiceImpl;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,13 +21,13 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderController {
 
-    private static final Logger log = LoggerFactory.getLogger(OrderController.class);
-
     private OrderService orderService;
 
-    @RequestMapping(path = "/orders/{organizationId}", method = RequestMethod.GET)
+    @LoggedArgs
+    @LoggedReturn
+    @Benchmark
+    @RequestMapping(path = "/orders/organization/{organizationId}", method = RequestMethod.GET)
     public List<Order> orders(@PathVariable(value = "organizationId") Integer organizationId) {
-        log.info("GET called on /hello resource");
         return orderService.findAllOrdersByOrganizationId(organizationId);
     }
 

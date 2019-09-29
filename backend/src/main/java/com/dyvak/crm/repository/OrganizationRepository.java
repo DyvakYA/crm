@@ -1,8 +1,7 @@
-package com.dyvak.springbootvuejs.repository;
+package com.dyvak.crm.repository;
 
 
-import com.dyvak.springbootvuejs.domain.Organization;
-import com.dyvak.springbootvuejs.domain.User;
+import com.dyvak.crm.domain.Organization;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

@@ -1,10 +1,11 @@
 {
   "name": "frontend",
   "version": "3.0.0",
-  "description": "A Vue.js & Spring Boot example project",
-  "author": "Jonas Hecht <jonas.hecht@codecentric.de>",
+  "description": "Free crm system",
+  "author": "Dyvak Yurii <dyvakyurii@gmail.com>",
   "private": true,
   "scripts": {
+    "clean": "rm -rf node_modules target",
     "serve": "vue-cli-service serve",
     "test:unit": "vue-cli-service test:unit --coverage",
     "test:e2e": "vue-cli-service test:e2e",
@@ -12,24 +13,31 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/vue-fontawesome": "^0.1.6",
+    "axios": "^0.18.1",
     "bootstrap": "^4.3.1",
-    "bootstrap-vue": "^2.0.0-rc.19",
-    "jquery": "^3.4.0",
+    "bootstrap-vue": "^2.0.0-rc.28",
+    "jquery": "^3.4.1",
+    "jwt-decode": "^2.2.0",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.6"
+    "vue-resource": "^0.1.17",
+    "vue-router": "^3.1.2",
+    "vuetify": "^1.5.14",
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.7.0",
-    "@vue/cli-plugin-e2e-nightwatch": "^3.7.0",
-    "@vue/cli-plugin-unit-jest": "^3.7.0",
-    "@vue/cli-service": "^3.7.0",
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-e2e-nightwatch": "^3.11.0",
+    "@vue/cli-plugin-unit-jest": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
     "@vue/test-utils": "^1.0.0-beta.29",
-    "ajv": "^6.10.0",
+    "ajv": "^6.10.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
     "node-sass": "^4.12.0",
-    "sass-loader": "^7.0.1",
+    "sass-loader": "^7.3.1",
     "vue-template-compiler": "^2.6.10"
   },
   "postcss": {

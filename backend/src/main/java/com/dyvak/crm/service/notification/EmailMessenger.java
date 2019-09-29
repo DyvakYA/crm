@@ -1,17 +1,15 @@
 package com.dyvak.crm.service.notification;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-@Component
-@Qualifier("email")
+@Component("email")
+@AllArgsConstructor
 public class EmailMessenger implements Messenger {
 
-    @Autowired
-    public JavaMailSender emailSender;
+    private JavaMailSender emailSender;
 
     @Override
     public void notify(String to, String subject, String text) {

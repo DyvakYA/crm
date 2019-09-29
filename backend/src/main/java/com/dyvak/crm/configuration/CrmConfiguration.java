@@ -10,13 +10,13 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableConfigurationProperties(NotificationProperties.class)
-public class FreeCrmConfiguration {
+public class CrmConfiguration {
 
     @Bean
     @ConditionalOnProduction
     @ConditionalOnNotification
     @ConditionalOnMissingBean
-    public ContextRefreshedEventApplicationListenerConfiguration notificationListener(NotificationProperties properties) {
+    public ContextRefreshedEventApplicationListenerConfiguration onApplicationStartListener(NotificationProperties properties) {
         return new ContextRefreshedEventApplicationListenerConfiguration(properties);
     }
 
@@ -24,8 +24,8 @@ public class FreeCrmConfiguration {
     @ConditionalOnProduction
     @ConditionalOnNotification
     @ConditionalOnMissingBean
-    public ContextClosedEventContextListenerConfiguration notificationListener(NotificationProperties properties) {
-        return new ContextRefreshedEventApplicationListenerConfiguration(properties);
+    public ContextClosedEventApplicationListenerConfiguration onApplicationStopListener(NotificationProperties properties) {
+        return new ContextClosedEventApplicationListenerConfiguration(properties);
     }
 
 

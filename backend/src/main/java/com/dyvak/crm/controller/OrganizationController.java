@@ -1,7 +1,11 @@
-package com.dyvak.springbootvuejs.controller;
+package com.dyvak.crm.controller;
 
-import com.dyvak.springbootvuejs.domain.Organization;
-import com.dyvak.springbootvuejs.service.OrganizationService;
+import com.dyvak.crm.aspects.Benchmark;
+import com.dyvak.crm.aspects.LoggedArgs;
+import com.dyvak.crm.aspects.LoggedReturn;
+import com.dyvak.crm.domain.Organization;
+import com.dyvak.crm.service.OrganizationService;
+import com.dyvak.crm.service.impl.OrganizationServiceImpl;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,14 +21,14 @@ import java.util.List;
 @AllArgsConstructor
 public class OrganizationController {
 
-    private static final Logger log = LoggerFactory.getLogger(OrganizationController.class);
-
     private OrganizationService organizationService;
 
+    @LoggedArgs
+    @LoggedReturn
+    @Benchmark
     @RequestMapping(path = "/organizations/{userId}", method = RequestMethod.GET)
     public List<Organization> organizations(@PathVariable(value = "userId") Integer userId) {
         List<Organization> organizations = organizationService.findAllOrganizationsByUserId(userId);
-        log.info("GET called on /organization/* {} ", organizations);
         return organizations;
     }
 }

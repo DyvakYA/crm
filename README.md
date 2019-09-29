@@ -504,7 +504,7 @@ Frontend needs to know the Port of our Spring Boot backend API, which is [automa
 
 To access the Heroku set port, we need to use relative paths inside our Vue.js application instead of hard-coded hosts and ports! 
 
-All we need to do is to configure Axios in such a way inside our [frontend/src/components/http-common.js](https://github.com/jonashackt/spring-boot-vuejs/blob/master/frontend/src/components/http-common.js):
+All we need to do is to configure Axios in such a way inside our [frontend/src/components/backend-api.js](https://github.com/jonashackt/spring-boot-vuejs/blob/master/frontend/src/components/backend-api.js):
 
 ```
 export const AXIOS = axios.create({

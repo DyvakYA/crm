@@ -1,7 +1,6 @@
-package com.dyvak.springbootvuejs.domain;
+package com.dyvak.crm.domain;
 
 import lombok.Data;
-import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
@@ -15,5 +14,9 @@ public class Contact {
     private long id;
 
     private String name;
+
+    private String phoneNumber;
+
+    private String email;
 
 }

@@ -12,7 +12,7 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Compiles and magnifies for production
 ```
 npm run build
 ```

@@ -1,4 +1,4 @@
-package com.dyvak.springbootvuejs.configuration;
+package com.dyvak.crm.configuration;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;

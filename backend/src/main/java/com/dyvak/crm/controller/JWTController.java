@@ -1,14 +1,15 @@
-package com.dyvak.springbootvuejs.controller;
+package com.dyvak.crm.controller;
 
-import com.dyvak.springbootvuejs.domain.User;
-import com.dyvak.springbootvuejs.exception.UserNotFoundException;
-import com.dyvak.springbootvuejs.exception.WrongPasswordException;
-import com.dyvak.springbootvuejs.security.JWTGenerator;
-import com.dyvak.springbootvuejs.security.JWTUser;
-import com.dyvak.springbootvuejs.service.UserService;
+import com.dyvak.crm.aspects.Benchmark;
+import com.dyvak.crm.aspects.LoggedArgs;
+import com.dyvak.crm.aspects.LoggedReturn;
+import com.dyvak.crm.domain.User;
+import com.dyvak.crm.exception.UserNotFoundException;
+import com.dyvak.crm.exception.WrongPasswordException;
+import com.dyvak.crm.security.JWTGenerator;
+import com.dyvak.crm.security.JWTUser;
+import com.dyvak.crm.service.UserService;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,17 +19,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api")
 @AllArgsConstructor
 public class JWTController {
-
-    private static final Logger log = LoggerFactory.getLogger(JWTController.class);
 
     private JWTGenerator jwtGenerator;
     private UserService userService;
 
+    @LoggedArgs
+    @LoggedReturn
+    @Benchmark
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String generate(@RequestBody User incomingUser) {
-        log.info(incomingUser.toString());
         if (!userService.existsByEmail(incomingUser.getEmail())) {
             throw new UserNotFoundException("User not found");
         }

@@ -105,7 +105,7 @@
 <script>
     // import api from '@/api'
     import navbar from './NavOrganization'
-    import {AXIOS} from "../components/http-common";
+    import {AXIOS} from "./backend-api";
 
     export default {
         data() {

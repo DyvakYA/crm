@@ -1,4 +1,4 @@
-package com.dyvak.springbootvuejs.exception;
+package com.dyvak.crm.exception;
 
 public class UserNotFoundException extends RuntimeException {
 

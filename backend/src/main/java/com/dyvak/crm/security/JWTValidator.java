@@ -1,6 +1,6 @@
-package com.dyvak.springbootvuejs.security;
+package com.dyvak.crm.security;
 
-import com.dyvak.springbootvuejs.exception.TokenNotPassValidationException;
+import com.dyvak.crm.exception.TokenNotPassValidationException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Component;

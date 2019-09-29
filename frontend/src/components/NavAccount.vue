@@ -1,16 +1,14 @@
 <template>
     <div id="nav">
-        <router-link to="/">Users</router-link> |
-        <router-link to="/callservice">Organizations</router-link> |
-        <router-link to="/bootstrap">Products</router-link> |
-        <router-link to="/user">User</router-link> |
-        <router-link to="/login">Login</router-link>
+        <router-link to="/profile">Profile</router-link> |
+        <router-link to="/account">Organizations</router-link> |
+        <router-link to="/loguot">Logout</router-link>
     </div>
 </template>
 
 <script>
     export default {
-        name: "nav-menu"
+        name: "NavAccount"
     }
 </script>
 

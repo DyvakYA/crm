@@ -1,13 +1,10 @@
-package com.dyvak.springbootvuejs.security;
+package com.dyvak.crm.security;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
 
 @AllArgsConstructor
 public class JWTUserDetails implements UserDetails {

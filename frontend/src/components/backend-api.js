@@ -6,22 +6,45 @@ export const AXIOS = axios.create({
 });
 
 export default {
-    hello() {
-        return AXIOS.get('hello')
-    },
-    getUser(userId) {
-        return AXIOS.get('/user/' + userId)
-    },
-    createuser(firstName, lastName) {
-        return AXIOS.post('/user/' + firstName + '/' + lastName);
+
+    user: {
+        authenticated: false
     },
 
-    getSecured(user, password) {
-        return AXIOS.get('/seecured', {
-            auth: {
-                username: user,
-                password: password
-            }
-        })
+    creatRecord(url, obj) {
+        return AXIOS.post(url, obj);
+    },
+
+    getRecord(url, objId) {
+        return AXIOS.get(url + objId)
+    },
+
+    updateRecord(url, obj, objId) {
+        return AXIOS.put(url + objId, obj);
+    },
+
+    deleteRecord(url, objId) {
+        return AXIOS.delete(url + objId);
+    },
+
+    login(email, password) {
+        let user = {
+            email: email,
+            password: password
+        }
+        return AXIOS.post('/login', user);
+    },
+    setTokenToRequests(token) {
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+    },
+
+    checkAuth() {
+        var jwt = localStorage.getItem('id_token')
+        if (jwt) {
+            this.user.authenticated = true
+        } else {
+            this.user.authenticated = false
+        }
     }
+
 }

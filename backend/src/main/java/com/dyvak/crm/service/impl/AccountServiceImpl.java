@@ -2,6 +2,7 @@ package com.dyvak.crm.service.impl;
 
 import com.dyvak.crm.domain.Account;
 import com.dyvak.crm.repository.AccountRepository;
+import com.dyvak.crm.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class AccountService {
+public class AccountServiceImpl implements AccountService {
 
     private AccountRepository accountRepository;
 

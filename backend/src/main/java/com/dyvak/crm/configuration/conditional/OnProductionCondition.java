@@ -1,4 +1,4 @@
-package com.dyvak.springbootvuejs.configuration.conditional;
+package com.dyvak.crm.configuration.conditional;
 
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;

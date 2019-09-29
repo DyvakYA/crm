@@ -1,4 +1,4 @@
-package com.dyvak.springbootvuejs.configuration;
+package com.dyvak.crm.configuration;
 
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;

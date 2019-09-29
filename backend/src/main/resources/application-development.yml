@@ -1,34 +1,12 @@
-spring:
-  application:
-    name: free-crm
-  profiles:
-     active: @spring.profiles.active@
-  main:
-    banner-mode: "off"
-
 server:
-  port: 8088
   app:
     email: dyvakyurii@gmail.com
-    threadCount: 10
-
-free-crm:
-  activate: true
-
-notification:
-  email:
-    - dyvakyurii@gmail.com
-  activate: true
-
----
+    threadCount: 4
 
 spring:
-  profiles: development | test
-  datasource:
-    url: @database.url@
-    username: user
-    password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: crm
+  profiles: development
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     database: mysql
@@ -37,27 +15,23 @@ spring:
     show-sql: false
     hibernate:
       ddl-auto: update
-
-server:
-  app:
-    email: dyvakyurii@gmail.com
-    threadCount: 4
-
----
-
-spring:
-  profiles: production
-
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL5Dialect
-    database: mysql
+  datasource:
+    url: @database.main.url@
+    username: user
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  logging:
+    level:
+      org.springframework.web: DEBUG
+      org.hibernate: DEBUG
+  mail:
+    host: smtp.gmail.com
+    port: 465
+    username: dyvakyurii
+    password: pentagon@gala.net
     properties:
-      hibernate.format_sql: true
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-
-
-
-
-
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

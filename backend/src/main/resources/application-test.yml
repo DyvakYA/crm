@@ -1,5 +1,5 @@
 spring:
-  profiles: development | test
+  profiles: test
   datasource:
     url: @database.url@
     username: user

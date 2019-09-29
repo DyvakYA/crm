@@ -1,6 +1,6 @@
-package com.dyvak.springbootvuejs.domain;
+package com.dyvak.crm.domain;
 
-import com.dyvak.springbootvuejs.security.UserRole;
+import com.dyvak.crm.security.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

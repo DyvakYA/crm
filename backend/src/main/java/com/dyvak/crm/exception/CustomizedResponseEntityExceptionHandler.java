@@ -1,4 +1,4 @@
-package com.dyvak.springbootvuejs.exception;
+package com.dyvak.crm.exception;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
